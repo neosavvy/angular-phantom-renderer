@@ -122,15 +122,14 @@ public class PhantomResource {
         }
         else if( binaryMatcher.matches() )
         {
-            //not sure....
-            LOG.error("Somehow binary is trying to go through phantom...this is a bug");
+            LOG.error("Somehow binary is trying to go through phantom.");
+            LOG.error("Might want to try to head this off at the pass (varnish)");
+            LOG.error("Add a rule to your varnishConfig.vcl file");
         }
         else
         {
             pathToCache = configuration.baseUrl + "/#/" + nameOfResource;
         }
-
-
 
         return pathToCache;
     }
