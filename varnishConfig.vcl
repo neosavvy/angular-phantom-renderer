@@ -18,10 +18,10 @@ sub vcl_recv {
         return(pass);
     }
 
-    if (req.url ~ "\.(png|gif|jpg|css|ico|svg|jpeg|js|otf|json)$") {
+    if (req.url ~ "\.(png|gif|jpg|css|ico|svg|jpeg|js|otf|json|woff)$") {
         set req.backend = webserver;
     }
-    else if ( req.url ~ "-ptl.html$" )
+    else if ( req.url ~ "^/partials" )
     {
         set req.backend = webserver;
     }

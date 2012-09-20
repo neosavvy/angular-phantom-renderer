@@ -97,11 +97,41 @@ public class PhantomResource {
         }
     }
 
+    private static final String BINARY_EXTENSION_PATTERN =
+            "([^\\s]+(\\.(?i)(jpg|png|gif|bmp|css|jpeg|svg))$)";
+
+    private static final String TEXTUAL_EXTENSION_PATTERN =
+            "([^\\s]+(\\.(?i)(html|htm))$)";
+
+
     private String convertPathToCacheableUrl(String pathToCache, String nameOfResource) {
 
-        pathToCache = configuration.baseUrl + "/" + nameOfResource;
+        Pattern textualPattern = Pattern.compile(TEXTUAL_EXTENSION_PATTERN);
+        Pattern binaryPattern = Pattern.compile(BINARY_EXTENSION_PATTERN);
+
+        Matcher textMatcher = textualPattern.matcher(nameOfResource);
+        Matcher binaryMatcher = binaryPattern.matcher(nameOfResource);
+
+        if(nameOfResource == null || nameOfResource.equals("") )
+        {
+            pathToCache = configuration.baseUrl + "/#/";
+        }
+        else if( textMatcher.matches() )
+        {
+            pathToCache = configuration.baseUrl + "/#" + nameOfResource;
+        }
+        else if( binaryMatcher.matches() )
+        {
+            //not sure....
+            LOG.error("Somehow binary is trying to go through phantom...this is a bug");
+        }
+        else
+        {
+            pathToCache = configuration.baseUrl + "/#/" + nameOfResource;
+        }
+
+
 
         return pathToCache;
-
     }
 }
