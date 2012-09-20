@@ -9,7 +9,6 @@ import org.junit.Test;
  * User: aparrish
  * Date: 8/15/12
  * Time: 5:51 PM
- * To change this template use File | Settings | File Templates.
  */
 public class OriginResourceTest extends ResourceTest {
 

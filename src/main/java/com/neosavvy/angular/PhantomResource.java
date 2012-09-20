@@ -20,7 +20,6 @@ import java.util.regex.Pattern;
  * User: aparrish
  * Date: 8/15/12
  * Time: 3:23 PM
- * To change this template use File | Settings | File Templates.
  */
 @Path("/")
 public class PhantomResource {
