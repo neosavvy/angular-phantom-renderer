@@ -34,5 +34,3 @@ page.open(url, function (status) {
     }
     phantom.exit();
 });
-
-

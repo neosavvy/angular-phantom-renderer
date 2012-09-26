@@ -114,22 +114,23 @@ public class PhantomResource {
 
         if(nameOfResource == null || nameOfResource.equals("") )
         {
-            pathToCache = configuration.baseUrl + "/#/";
+            pathToCache = configuration.baseUrl + "/#/?pushState=false";
         }
         else if( textMatcher.matches() )
         {
-            pathToCache = configuration.baseUrl + "/#" + nameOfResource;
+            pathToCache = configuration.baseUrl + "/#" + nameOfResource + "?pushState=false";
         }
         else if( binaryMatcher.matches() )
         {
-            LOG.error("Somehow binary is trying to go through phantom.");
-            LOG.error("Might want to try to head this off at the pass (varnish)");
-            LOG.error("Add a rule to your varnishConfig.vcl file");
+            //not sure....
+            LOG.error("Somehow binary is trying to go through phantom...this is a bug");
         }
         else
         {
-            pathToCache = configuration.baseUrl + "/#/" + nameOfResource;
+            pathToCache = configuration.baseUrl + "/#/" + nameOfResource + "?pushState=false";
         }
+
+
 
         return pathToCache;
     }

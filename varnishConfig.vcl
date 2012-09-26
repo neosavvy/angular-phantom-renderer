@@ -13,15 +13,13 @@ backend webserver {
 
 sub vcl_recv {
 
-    if (req.url ~ "^/apps/profile/rest/")
-    {
-        return(pass);
-    }
-
     if (req.url ~ "\.(png|gif|jpg|css|ico|svg|jpeg|js|otf|json|woff)$") {
         set req.backend = webserver;
     }
-    else if ( req.url ~ "^/partials" )
+    else if ( req.url ~"\.js") {
+        set req.backend = webserver;
+    }
+    else if ( req.url ~ "partial" )
     {
         set req.backend = webserver;
     }
